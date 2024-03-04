@@ -14,8 +14,6 @@ void print_vec(std::vector<char> v) {
 
 int main() {
     std::map<char, int> precedence;
-    precedence['('] = 5; // Adding parentheses to precedence might break something down the road
-    precedence[')'] = 5;
     precedence['^'] = 4;
     precedence['*'] = 3;
     precedence['/'] = 3;
@@ -52,11 +50,27 @@ int main() {
         if (std::isalnum(c)) {
             out_queue.push_back(c);
         } else if (precedence.count(c)) {
+            while (!op_stack.empty() && precedence[c] <= precedence[op_stack.back()]) {
+                out_queue.push_back(op_stack.back());
+                op_stack.pop_back();
+            }
             op_stack.push_back(c);
+        } else if (c == '(') {
+            op_stack.push_back(c);
+        } else if (c == ')') {
         } else {
             std::cout << "is invalid" << std::endl;
         }
         std::cout << "Stack: "; print_vec(op_stack);
         std::cout << "Queue: "; print_vec(out_queue);
     }
+    // Add the rest of the operators to the output
+    while (!op_stack.empty()) {
+        std::cout << "moving operators" << std::endl;
+        out_queue.push_back(op_stack.back());
+        op_stack.pop_back();
+    }
+    std::cout << "done moving operators" << std::endl;
+    std::cout << "Stack: "; print_vec(op_stack);
+    std::cout << "Queue: "; print_vec(out_queue);
 }
