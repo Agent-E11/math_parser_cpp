@@ -67,7 +67,11 @@ int main() {
             std::cout << "c: " << c << "\t";
             // std::cout << "p[c]: " << precedence.at(c) << "\t";
             std::cout << "p.c: " << precedence.count(c) << "\t";
-            while (!op_stack.empty() && precedence.at(c) <= precedence.at(op_stack.back()) && op_stack.back() != '(') {
+            while (
+                !op_stack.empty()
+                && op_stack.back() != '('
+                && precedence.at(c) <= precedence.at(op_stack.back())
+            ) {
                 out_queue.push_back(op_stack.back());
                 op_stack.pop_back();
             }
@@ -94,7 +98,7 @@ int main() {
     // Add the rest of the operators to the output
     std::cout << "moving operators" << std::endl;
     while (!op_stack.empty()) {
-        if (op_stack.back()) {
+        if (op_stack.back() == '(' || op_stack.back() == ')') {
             std::cout << "Error: mismatched parentheses" << std::endl;
             return 1;
         }
