@@ -5,24 +5,7 @@
 #include <map>
 #include <vector>
 
-void print_vec(std::vector<char> v) {
-    for (int i = 0; i < v.size(); i++) {
-        std::cout << v[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void print_map(std::map<char, int> m) {
-    std::cout << std::endl << "{" << std::endl;
-    for (const auto& elem : m) {
-        std::cout << "    " << elem.first << " = " << elem.second << std::endl;
-    }
-    std::cout << "}" << std::endl;
-}
-
-bool map_contains(std::map<char, int> m, char c) {
-    return m.find(c) != m.end();
-}
+#include "tools.h"
 
 std::vector<char> infix_to_postfix(std::vector<char> expr) {
     const std::map<char, int> precedence = {
@@ -42,7 +25,7 @@ std::vector<char> infix_to_postfix(std::vector<char> expr) {
         if (std::isalnum(c)) {
             // If it is alphanumeric, push it to the output
             out_queue.push_back(c);
-        } else if (map_contains(precedence, c)) {
+        } else if (tools::map_contains(precedence, c)) {
             // If it is an operator
 
             // Pop operators from the stack to the output, if:
