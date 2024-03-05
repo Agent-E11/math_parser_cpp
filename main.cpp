@@ -7,6 +7,10 @@
 
 #include "tools.h"
 
+// TODO: Add support for functions
+// !(x) = Factorial of x
+// etc.
+
 std::vector<char> infix_to_postfix(std::vector<char> expr) {
     const std::map<char, int> precedence = {
         {'^', 4},
