@@ -1,15 +1,9 @@
-#include <vector>
 #include <iostream>
 #include <map>
 
-namespace tools {
-    void print_vec(std::vector<char> v) {
-        for (int i = 0; i < v.size(); i++) {
-            std::cout << v[i] << " ";
-        }
-        std::cout << std::endl;
-    }
+#include "tools.h"
 
+namespace tools {
     void print_map(std::map<char, int> m) {
         std::cout << std::endl << "{" << std::endl;
         for (const auto& elem : m) {

@@ -10,6 +10,8 @@
 // TODO: Add support for functions
 // !(x) = Factorial of x
 // etc.
+//
+// TODO: Add support for multi-digit numbers
 
 std::vector<char> infix_to_postfix(std::vector<char> expr) {
     const std::map<char, int> precedence = {
